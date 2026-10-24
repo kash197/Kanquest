@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: kanquest
+    runtime: node
+    plan: free
+    buildCommand: cd backend && npm ci && cd ../frontend && npm ci && npm run build
+    startCommand: cd backend && npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: GEMINI_API_KEY
+        sync: false
